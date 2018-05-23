@@ -1,0 +1,12 @@
+<br>
+<div class="container">
+    <h1>게 시 판</h1>  
+    <% @view_post.each do |e| %>
+    번호 : <%= e.id %> <br>
+    제목 : <a href="/show/<%=e.id%>"><%=e.title%></a><br>
+    작성자 : <%= e.editor%> <br>
+    <hr>
+    <% end %>
+        
+    <a href="/write"><button class="btn btn-primary">작성</button></a>
+</div>

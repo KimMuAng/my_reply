@@ -1,0 +1,11 @@
+<br>
+<hr>
+<div class="container">
+    <h2>제목 : <%= @s_post.title%></h2>
+    <h3>작성자 : <%= @s_post.editor%></h3>
+    <h4>내용 : <%=@s_post.content%></h4>
+    <hr>
+    <a href="/list"><button class="btn btn-primary">목록</button></a>
+    <a href="/destroy/<%=@s_post.id%>"><button class="btn btn-primary">삭제</button></a>
+    <a href="/edit/<%=@s_post.id%>"><button class="btn btn-primary">수정</button></a>    
+</div>
