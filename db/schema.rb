@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180522053116) do
+ActiveRecord::Schema.define(version: 20180523120402) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "editor"
     t.text   "content"
-    t.string "password"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.string  "editor"
+    t.integer "post_id"
+    t.text    "content"
   end
 
 end

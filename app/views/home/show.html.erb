@@ -5,7 +5,33 @@
     <h3>작성자 : <%= @s_post.editor%></h3>
     <h4>내용 : <%=@s_post.content%></h4>
     <hr>
-    <a href="/list"><button class="btn btn-primary">목록</button></a>
-    <a href="/destroy/<%=@s_post.id%>"><button class="btn btn-primary">삭제</button></a>
-    <a href="/edit/<%=@s_post.id%>"><button class="btn btn-primary">수정</button></a>    
+    <a href="/"><button class="btn btn-primary">목록</button></a>
+    <a href="/delete/<%=@s_post.id%>"><button class="btn btn-primary">삭제</button></a>
+    <a href="/edit/<%=@s_post.id%>"><button class="btn btn-primary">수정</button></a>  
+    <hr>
+</div>
+<div class = "container">
+    <form action = "/reply_create" method = "POST">
+      <h5>댓글 작성</h5>
+        <div class="form-group">
+          <input type="hidden" name="post_id" value="<%= @s_post.id%>">
+          <!--댓글 모델과 게시글을 연결할때 필요한 Key 입력을 하되 이걸 숨긴당-->
+              <div class="form-gorup">
+                <label for="editor">작성자</label>
+                <input type="text" name="r_editor" class="form-control" id="editor">
+              </div>
+              <div class="form-group">
+                <label for="erxampleFormControlTextarea1">댓글</label>
+                <textarea class="form-control" name="r_content" rows="3"></textarea>
+              </div>
+          <button type="submit" class="btn btn-primary">작 성</button>
+    </form>
+</div>
+<div class = "container">
+  <% @s_post.replies.each do |r| %>
+    작성자 : <%= r.editor %> <br>
+    내용 : <%= r.content %> <br><br>
+    <a href="<%= r.post_id%>/reply_delete/<%=r.id %>"><button class="btn btn-primary">삭제</button></a> <br>
+    <hr>
+  <% end %>
 </div>

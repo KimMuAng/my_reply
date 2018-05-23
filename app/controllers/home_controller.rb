@@ -3,7 +3,7 @@ class HomeController < ApplicationController
     @view_post = Post.all #실질적인 모델을 불러오는 것은 컨트롤러에서 / 보여지는 것은 뷰에서
   end
   
-  def write
+  def new
   end
   
   def create
@@ -11,24 +11,26 @@ class HomeController < ApplicationController
     posts.title = params[:title]
     posts.editor = params[:editor]
     posts.content = params[:content]
-    posts.password = params[:password]
     
     posts.save
     
-    redirect_to '/list'
+    redirect_to '/'
   end
   
   def show #실질적으로 게시글 하나를 보여주기. 
     @s_post = Post.find(params[:post_id]) 
+    
+    #댓글 나열하기
+    Post.find(params[:post_id]).replies.all
   end
   
-  def destroy
+  def delete
     d_post = Post.find(params[:post_id])
     d_post.destroy
-    redirect_to "/list"
+    redirect_to "/"
   end
   
-  def edit_show
+  def edit
     @e_post = Post.find(params[:post_id])
   end
 
@@ -37,10 +39,9 @@ class HomeController < ApplicationController
     u_post.title = params[:title]
     u_post.editor = params[:editor]
     u_post.content = params[:content]
-    u_post.password = params[:password]
     u_post.save
     
-    redirect_to '/list'
+    redirect_to '/show/' + params[:post_id]
   end
 
 end
